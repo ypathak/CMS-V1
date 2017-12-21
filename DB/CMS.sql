@@ -1,0 +1,5 @@
+INSERT INTO Role (id, created_by, created_date, is_deleted, updated_by, updated_date, role) VALUES (1, '1', '2017-12-04 14:00:00', false, null, null, 'SUPER_ADMIN');
+INSERT INTO Role (id, created_by, created_date, is_deleted, updated_by, updated_date, role) VALUES (2, '1', '2017-12-04 14:00:00', false, null, null, 'ADMIN');
+INSERT INTO Role (id, created_by, created_date, is_deleted, updated_by, updated_date, role) VALUES (3, '1', '2017-12-04 14:00:00', false, null, null, 'EMPLOYEE');
+INSERT INTO User (id, created_by, created_date, is_deleted, updated_by, updated_date, email, firstname, lastname, password, username) VALUES (1, null, null, false, null, null, 'mineshbhadeshia@gmail.com', 'Minesh', 'Gajjar', '$2a$10$ImGeT9SolmhjSMSZpvygKOn2r7kwhRH8dBiMXfCUvSGZRclpS9sG2', 'Minesh');
+INSERT INTO userroles (Userid, userrole_id) VALUES (1, 1);

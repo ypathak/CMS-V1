@@ -1,0 +1,35 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="base.definition" template="/WEB-INF/jsp/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+
+	</definition>
+	<definition name="sa" extends="base.definition">
+		<put-attribute name="title" value="welcome Super Admin"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/superadmin.jsp"></put-attribute>
+	</definition>
+	<definition name="a" extends="base.definition">
+		<put-attribute name="title" value="welcome Admin"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin.jsp"></put-attribute>
+	</definition>
+	<definition name="e" extends="base.definition">
+		<put-attribute name="title" value="welcome EMPLOYEE"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/employee.jsp"></put-attribute>
+	</definition>
+	<definition name="userregi" extends="base.definition">
+		<put-attribute name="title" value="Regiter Employee"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/userregister.jsp"></put-attribute>
+	</definition>
+   <definition name="clnt" extends="base.definition">
+   <put-attribute name="title" value="Insert Client"></put-attribute>
+   <put-attribute name="body" value="/WEB-INF/jsp/clientregistretion.jsp"></put-attribute>
+   </definition>
+
+
+</tiles-definitions>
