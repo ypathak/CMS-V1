@@ -36,6 +36,8 @@ public class Client {
 	@OneToMany(mappedBy="client",fetch=FetchType.LAZY)
 	private List<Department> departments;
 
+	
+	
 	public int getClientid() {
 		return clientid;
 	}

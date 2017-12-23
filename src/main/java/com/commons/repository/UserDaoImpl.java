@@ -13,22 +13,22 @@ import com.commons.entity.Role;
 import com.commons.entity.User;
 
 @Repository
-public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao  {
+public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 	@Autowired
 	SessionFactory sessionfactory;
 
 	Session session;
 	Transaction transaction;
+
 	@Override
-	public User findByUserName(String userName) throws Exception{
-		session  = sessionfactory.getCurrentSession();
-		transaction =session.beginTransaction();
-		
+	public User findByUserName(String userName) throws Exception {
+		session = sessionfactory.getCurrentSession();
+		transaction = session.beginTransaction();
+
 		User user = null;
 		try {
 			String hql = "FROM User WHERE username = :username or email = :username";
-			user = (User) session.createQuery(hql)
-					.setParameter("username", userName).uniqueResult();
+			user = (User) session.createQuery(hql).setParameter("username", userName).uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -40,36 +40,37 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao  
 	}
 
 	@Override
-	public List<Role> findallrole(String role) throws Exception{
+	public List<Role> findallrole(String role) throws Exception {
 		// TODO Auto-generated method stub
 		List<Role> list;
-		session=sessionfactory.getCurrentSession();
-		transaction=session.beginTransaction();
-		try{
+		session = sessionfactory.getCurrentSession();
+		transaction = session.beginTransaction();
+		try {
 			String hql = "from Role WHERE role=:role";
-			 list=session.createQuery(hql).setParameter("role",role).list();
-		}catch(Exception e){
+			list = session.createQuery(hql).setParameter("role", role).list();
+		} catch (Exception e) {
 			throw e;
-		}finally {
+		} finally {
 			transaction.commit();
 			session.close();
 		}
 		return list;
 	}
-      @Override
-      public void save(User user){
-    	  System.out.println("user dao+++++++++++++++++");
-    	  session=sessionfactory.getCurrentSession();
-  		transaction=session.beginTransaction();
-  		try{
-  			user.setDeleted(false);
-  			 session.save(user);
-  		}catch(Exception e){
-  			throw e;
-  		}finally {
-  			transaction.commit();
-  			session.close();
-  		}
-      }
-	
+
+	@Override
+	public void save(User user) {
+		System.out.println("user dao+++++++++++++++++");
+		session = sessionfactory.getCurrentSession();
+		transaction = session.beginTransaction();
+		try {
+			user.setDeleted(false);
+			session.save(user);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			transaction.commit();
+			session.close();
+		}
+	}
+
 }

@@ -24,44 +24,44 @@ import com.commons.utils.ApplicationConstants;
 @Controller
 @RequestMapping(value = "a")
 @PreAuthorize(value = "ADMIN")
-public class AdminController implements ApplicationConstants{
+public class AdminController implements ApplicationConstants {
 	@Autowired
 	UserService userService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String dashboard() {
-		
+
 		return "a";
 	}
-	
-	@RequestMapping(value="/rurl",method=RequestMethod.POST)
-	public String submitemp(@Valid @ModelAttribute("Empdata") User user,BindingResult result){
-		if(result.hasErrors()){
-			return "a";
+
+	@RequestMapping(value = "/rurl", method = RequestMethod.POST)
+	public String submitemp(@Valid @ModelAttribute("Empdata") User user, BindingResult result) {
+		if (result.hasErrors()) {
+			return "userregi";
 		}
 		try {
-			List<Role> roles=userService.fetchrole("EMPLOYEE");
+			List<Role> roles = userService.fetchrole("EMPLOYEE");
 			user.setRoles(new HashSet<>(roles));
-		
+
 			userService.save(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return "a";
-		
+
 	}
+
 	@RequestMapping(value = "/regi", method = RequestMethod.GET)
 	public String register(Model model) {
 		model.addAttribute("Empdata", new User());
 		return "userregi";
 	}
-	
-	@RequestMapping(value="/clnt",method=RequestMethod.GET)
-	public String regiclient(Model model){
-	   model.addAttribute("clientdata",new Client());	
-	   return "clnt";
+
+	@RequestMapping(value = "/clnt", method = RequestMethod.GET)
+	public String regiclient(Model model) {
+		model.addAttribute("clientdata", new Client());
+		return "clnt";
 	}
 }
