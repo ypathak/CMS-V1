@@ -74,6 +74,10 @@ public abstract class AbstractEntity implements Serializable
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
 	
 
 }
