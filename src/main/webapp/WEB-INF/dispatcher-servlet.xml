@@ -9,42 +9,60 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-        <mvc:annotation-driven></mvc:annotation-driven>
+
+
+
+	<mvc:annotation-driven></mvc:annotation-driven>
 	<context:component-scan base-package="com.commons.*" />
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
+
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix"> <value>/WEB-INF/jsp/</value> </property> <property 
+		name="suffix"> <value>.jsp</value> </property> </bean> -->
+
+
+     
+     <bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
 	
-	<!-- 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-			<property name="prefix"> 
-				<value>/WEB-INF/jsp/</value> 
-			</property> 
-			<property name="suffix"> 
-				<value>.jsp</value> 
-			</property> 
-    </bean> 
-	-->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en" />
+    </bean>
+  
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang" />
+    </bean>
+     
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="localeChangeInterceptor" />
+            </list>
+        </property>
+    </bean>
+
+<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass">
 			<value>
 				org.springframework.web.servlet.view.tiles3.TilesView
 			</value>
 		</property>
 	</bean>
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/tiles.xml</value>
 			</list>
 		</property>
 	</bean>
-	<bean id="messageSource"
-        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
- 
-        <property name="basename" value="/WEB-INF/messages" />
-          <property name="cacheSeconds" value="3000" />
-    </bean>
 </beans>
