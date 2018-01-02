@@ -16,13 +16,14 @@
          color: red;
          }
       </style>
+    
    </head>
    <body>
     <sec:authentication property="principal.username" var="uname" />
       <div class="content-wrapper">
          <!-- Content Header (Page header) -->
          <section class="content-header">
-            <c:url	value="/a/rurl" var="registerURL" />
+            <c:url	value="/a/clntregister" var="registerURL" />
             <div class="form-group has-feedback">
                <div class="row">
                   <div class="col-md-6">
@@ -38,7 +39,7 @@
                                  <form:input class="form-control" placeholder="Name" type="text" path="Clientname"/>
                                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                  <span>
-                                    <form:errors path="Clientname" cssClass="error"/>
+                                    <form:errors path="clientname" cssClass="error"/>
                                  </span>
                               </div>
                               <div class="form-group has-feedback">
@@ -50,16 +51,37 @@
                               </div>
                               <div class="form-group has-feedback">
                                  <form:input class="form-control" placeholder="Adhar Number" type="text" path="adharnumber"/>
-                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                  <span>
                                     <form:errors path="adharnumber" cssClass="error" />
                                  </span>
                               </div>
-                                <div class="form-group has-feedback">
-                                 <form:input class="form-control" placeholder="DOB" type="text" path="adharnumber" id="datepicker"/>
-                              <!--    <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+                               <div class="form-group has-feedback">
+                                 <form:input class="form-control" placeholder="Department" type="text" path="department"/>
+                                 <span class="fa-building-o form-control-feedback"></span>
                                  <span>
-                                    <form:errors path="adharnumber" cssClass="error" />
+                                    <form:errors path="department" cssClass="error" />
+                                 </span>
+                              </div>
+                                <div class="form-group has-feedback">
+                                 <form:input class="form-control" placeholder="DOB" type="text" path="dateofbirth" id="datepicker"/>
+                                 <span class="fa fa-birthday-cake form-control-feedback"></span>
+                                 <span>
+                                    <form:errors path="dateofbirth" cssClass="error" />
+                                 </span>
+                              </div>
+                              <div class="form-group has-feedback">
+                                 <form:input class="form-control" placeholder="Mobile Number" type="number" path="mobilenumber"/>
+                                 <span class="fa-mobile form-control-feedback"></span>
+                                 <span>
+                                    <form:errors path="mobilenumber" cssClass="error" />
+                                 </span>
+                              </div>
+                                <div class="form-group has-feedback">
+                                 <form:input class="form-control" placeholder="Phone Number" type="number" path="phonenumber"/>
+                                 <span class="fa-phone form-control-feedback"></span>
+                                 <span>
+                                    <form:errors path="phonenumber" cssClass="error" />
                                  </span>
                               </div>
                               <div class="row">
@@ -89,18 +111,26 @@
          <!-- /.content -->
       </div>
    </body>
-   <script type="text/javascript">
+ 
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
+
+        <script type="text/javascript">
    $(function() {
-       $( "#datepicker" ).datepicker({
-           dateFormat : 'mm/dd/yy',
-           changeMonth : true,
-           changeYear : true,
-           yearRange: '-100y:c+nn',
-           maxDate: '-1d'
-       });
-   });
+	    $( "#datepicker" ).datepicker({
+	    	  dateFormat : 'dd/mm/yy',
+	            changeMonth : true,
+	            changeYear : true,
+	            yearRange: '-100y:c+nn',
+	            maxDate: '-1d',
+	            autoclose: true,
+	            orientation: "bottom"
+	    	
+	    });
+	  });
   
    
    </script>
-   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	    
 </html>

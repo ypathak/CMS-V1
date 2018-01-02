@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/theme/dist/css/font-awesome.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/theme/dist/css/ionicons.min.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/theme/dist/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/theme/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -86,6 +87,9 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="${pageContext.request.contextPath}/resources/theme/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
+<script src="${pageContext.request.contextPath}/resources/theme/dist/js/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/theme/dist/js/dataTables.bootstrap.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/resources/theme/dist/js/raphael.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/theme/dist/js/morris.min.js"></script>
 <!-- Sparkline -->

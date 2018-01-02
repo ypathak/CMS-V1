@@ -102,6 +102,7 @@
          });
       </script>
       <script type="text/javascript">
+      window.onload = function () { Clear(); } function Clear() { var Backlen=history.length; if (Backlen > 0) history.go(-Backlen); }
          var applogin = {
          		validate: function(){
          			$(".devDivUsername").removeClass('has-error')

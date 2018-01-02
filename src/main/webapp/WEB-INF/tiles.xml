@@ -26,10 +26,13 @@
 		<put-attribute name="title" value="Regiter Employee"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/jsp/userregister.jsp"></put-attribute>
 	</definition>
-   <definition name="clnt" extends="base.definition">
+   <definition name="clntregister" extends="base.definition">
    <put-attribute name="title" value="Insert Client"></put-attribute>
    <put-attribute name="body" value="/WEB-INF/jsp/clientregistretion.jsp"></put-attribute>
    </definition>
-
+ <definition name="clnt" extends="base.definition">
+   <put-attribute name="title" value="Insert Client"></put-attribute>
+   <put-attribute name="body" value="/WEB-INF/jsp/clientlist.jsp"></put-attribute>
+   </definition>
 
 </tiles-definitions>

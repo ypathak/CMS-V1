@@ -2,7 +2,7 @@ package com.commons.service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,16 @@ public class AuthenticationProviderApp  implements UserDetailsService {
 	@Autowired
 	private UserDao userDao;
 
+
+	@Autowired
+	HttpSession session;
+
 	@Override
 	public UserDetails loadUserByUsername(String uname) throws UsernameNotFoundException {
 		User user = null;
 		try {
 			user = userDao.findByUserName(uname);
+			session.setAttribute("user", user);	
 			/*if(null == user){
 				throw new UsernameNotFoundException("Invalid User");
 			}*/
@@ -35,7 +40,7 @@ public class AuthenticationProviderApp  implements UserDetailsService {
 			e.printStackTrace();
 			//throw new UsernameNotFoundException("Invalid User");
 		}
-		
+
 		Set<GrantedAuthority> grantedAuthorities=new HashSet<GrantedAuthority>();
 		Set<Role> role = user.getRoles();	   
 		for(Role role2:role){

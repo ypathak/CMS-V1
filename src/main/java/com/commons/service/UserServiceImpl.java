@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.commons.entity.Client;
 import com.commons.entity.Role;
 import com.commons.entity.User;
 import com.commons.repository.UserDao;
+import com.commons.repository.UserDaoImpl;
 
 
 @Service
@@ -42,4 +44,22 @@ public class UserServiceImpl implements UserService{
 		return userDao.findallrole(role);
 		
 	}
+
+	@Override
+	public List<Client> clientlist(Long long1) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.clientlist(long1);
+	}
+
+	@Override
+	public void saveclient(Client client) throws Exception {
+		// TODO Auto-generated method stub
+		
+		Date created_date=new Date();
+		client.setCreatedDate(created_date);
+		userDao.saveclient(client);
+		
+	}
+
+	
 }

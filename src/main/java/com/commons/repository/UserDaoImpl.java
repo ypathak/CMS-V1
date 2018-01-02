@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.commons.entity.Client;
 import com.commons.entity.Role;
 import com.commons.entity.User;
 
@@ -71,5 +72,45 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 			session.close();
 		}
 	}
+
+	@Override
+	public List<Client> clientlist(Long long1) throws Exception {
+		// TODO Auto-generated method stub
+		session = sessionfactory.getCurrentSession();
+		transaction = session.beginTransaction();
+		List<Client> list;
+		try{
+			String hql="from Client where user_id=:user_id";	
+			list = session.createQuery(hql).setParameter("user_id", long1).list();
+
+		}catch(Exception e){
+			throw e;
+
+		}
+		finally {
+			transaction.commit();
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public void saveclient(Client client) throws Exception {
+		session = sessionfactory.getCurrentSession();
+		transaction = session.beginTransaction();
+		try {
+			client.setDeleted(false);
+			session.save(client);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			transaction.commit();
+			session.close();
+		}
+
+	}
+
+
+
 
 }

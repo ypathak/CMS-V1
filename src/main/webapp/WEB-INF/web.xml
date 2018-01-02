@@ -53,4 +53,11 @@
     <url-pattern>*.woff2</url-pattern>
     <url-pattern>*.ttf</url-pattern>
   </servlet-mapping>
+  
+  <listener>
+	<listener-class>
+		org.springframework.web.context.request.RequestContextListener
+	</listener-class>
+   </listener>
+  
 </web-app>

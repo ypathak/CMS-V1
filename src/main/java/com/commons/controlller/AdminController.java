@@ -3,6 +3,7 @@ package com.commons.controlller;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.commons.entity.Client;
 import com.commons.entity.Role;
@@ -26,6 +28,8 @@ import com.commons.utils.ApplicationConstants;
 public class AdminController implements ApplicationConstants {
 	@Autowired
 	UserService userService;
+
+
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String dashboard() {
@@ -59,8 +63,37 @@ public class AdminController implements ApplicationConstants {
 	}
 
 	@RequestMapping(value = "/clnt", method = RequestMethod.GET)
-	public String regiclient(Model model) {
-		model.addAttribute("clientdata", new Client());
+	public String regiclient(Model model,HttpSession session) {
+
+		try{
+			User  user=(User)session.getAttribute("user");
+			
+			List<Client> clients =userService.clientlist(user.getId());
+			model.addAttribute("clientdata", new Client());
+			model.addAttribute("clientlist", clients);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
 		return "clnt";
 	}
+	@RequestMapping(value="/clntregister", method=RequestMethod.POST )
+	public @ResponseBody List<Client> addclient(@ModelAttribute("clientdata")Client client,HttpSession session){
+		List<Client> clients=null;
+		try{
+			User  user=(User)session.getAttribute("user");
+			client.setUser(user);
+			userService.saveclient(client);
+			clients =userService.clientlist(user.getId());
+		}catch(Exception exception)
+		{
+			System.out.println(exception);
+		}
+		return clients;
+	}
+
+
+
+
+
 }
