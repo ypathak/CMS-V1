@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Document")
-public class Department {
+public class Document {
 
 	@Id
 	@GeneratedValue

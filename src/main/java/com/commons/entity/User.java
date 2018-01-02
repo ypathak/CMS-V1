@@ -60,7 +60,7 @@ public class User extends AbstractEntity {
 	private Set<Role> roles;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Client> client;
+	private Set<Client> client;
 
 	public User() {
 	}
@@ -133,11 +133,11 @@ public class User extends AbstractEntity {
 		this.roles = roles;
 	}
 
-	public List<Client> getClient() {
+	public Set<Client> getClient() {
 		return client;
 	}
 
-	public void setClient(List<Client> client) {
+	public void setClient(Set<Client> client) {
 		this.client = client;
 	}
 
