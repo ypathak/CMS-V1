@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.commons.entity.AbstractEntity;
 import com.commons.entity.User;
 import com.commons.service.UserService;
 import com.commons.utils.ApplicationConstants;

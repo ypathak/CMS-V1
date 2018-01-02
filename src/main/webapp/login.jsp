@@ -40,10 +40,10 @@
             <p class="login-box-msg">Sign in to start your session</p>
             <form name='f' action="auth" method="post" onsubmit="return applogin.validate();">
                <c:if test="${param.error != null}">
-                  <div id="error">
-                     <!-- <spring:message code="message.badCredentials">   
-                        </spring:message> -->
-                     Invalid username or password
+                  <div id="error" class="has-feedback has-error" >
+                  	 <label class="control-label">
+                  	 		<spring:message code="message.badCredentials"></spring:message>
+                  	 </label>
                   </div>
                </c:if>
                <div class="form-group has-feedback devDivUsername" >

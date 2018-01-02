@@ -27,11 +27,15 @@ public class AuthenticationProviderApp  implements UserDetailsService {
 		User user = null;
 		try {
 			user = userDao.findByUserName(uname);
+			/*if(null == user){
+				throw new UsernameNotFoundException("Invalid User");
+			}*/
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new UsernameNotFoundException("Invalid User");
+			//throw new UsernameNotFoundException("Invalid User");
 		}
+		
 		Set<GrantedAuthority> grantedAuthorities=new HashSet<GrantedAuthority>();
 		Set<Role> role = user.getRoles();	   
 		for(Role role2:role){
