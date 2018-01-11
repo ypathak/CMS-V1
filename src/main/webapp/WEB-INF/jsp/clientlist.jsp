@@ -4,11 +4,13 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -18,8 +20,11 @@
 	src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/client.js"></script>
 
+
+
+
+<script src="${pageContext.request.contextPath}/resources/js/client.js"></script>
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -82,6 +87,7 @@ opacity: 1;
 							style="float: right;" onclick="client.addnewclient()">Add New
 							Client</a>
 					</div>
+					
 					<!-- /.box-header -->
 					<div class="box-body">
 						<div id="example2_wrapper"
@@ -256,7 +262,7 @@ opacity: 1;
 						         class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						
 							<form:form modelAttribute="clientdata"
-								onsubmit="return client.Validate()" name="form1">
+								onsubmit="return client.Validate()" name="form1" action="${contextPath}">
 								<div class="form-group has-feedback">
 									<form:input class="form-control" placeholder="Client Name"
 										type="text" path="clientname" autocomplete="off" />

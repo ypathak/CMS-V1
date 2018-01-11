@@ -3,24 +3,21 @@
  */
 
 var client={
-		
-
 		addnewclient : function(){
 			document.getElementById('divdisplay').style.display = "block";
 		},	
 
-
 		fromsubmit : function(){
-			var urlsend="/CMS-V1/a/clntregister";
-			var str = $("#clientdata").serialize();
-			alert("ajax")
 			debugger;
+			var urlsend = $("#clientdata").attr("action")+"/a/clntregister";
+			
 			$.ajax({
 				type:"POST",
 				url:urlsend,
-				async: true,
+				datatype :'json',
 				data:$("#clientdata").serialize(),
 				success: function(data){
+					debugger;
 					alert(data+"success");
 					$("#divdisplay").hide();
 
@@ -80,8 +77,6 @@ var client={
 
 				} 
 
-
-
 				if(isNaN(mobilenumber) || isNaN(phonenumber)){
 					document.getElementById("mobilenumber").innerHTML="Enter Valid Mobile Number";  
 					alert("enter valid mobilenumber")
@@ -98,27 +93,22 @@ var client={
 				}
 				return false;
 			}
-
-
 			client.fromsubmit();
-
 		},
-
 
 		closepopup: function(){
 			debugger;
 			$("#divdisplay").hide();
 
 		},
-		
+
 		showtable(obj){
-			
+
 		},
-		
-		
 
 };
 
 $(document).ready(function()  {
+	
 	$("#divdisplay").hide();
 });
