@@ -1,70 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-
-
-	<mvc:annotation-driven></mvc:annotation-driven>
-	<context:component-scan base-package="com.commons.*">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
-	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
-
-	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<property name="prefix"> <value>/WEB-INF/jsp/</value> </property> <property 
-		name="suffix"> <value>.jsp</value> </property> </bean> -->
-
-
-     
-     <bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8"/>
-	</bean>
-	
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="en" />
-    </bean>
-  
-    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-        <property name="paramName" value="lang" />
-    </bean>
-     
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-        <property name="interceptors">
-            <list>
-                <ref bean="localeChangeInterceptor" />
-            </list>
-        </property>
-    </bean>
-
-<bean id="viewResolver"
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	  xmlns:context="http://www.springframework.org/schema/context" 
+	  xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	  xmlns:security="http://www.springframework.org/schema/security" 
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	  xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+	  						http://www.springframework.org/schema/beans/spring-beans.xsd         
+	  						http://www.springframework.org/schema/context         
+	  						http://www.springframework.org/schema/context/spring-context.xsd         
+	  						http://www.springframework.org/schema/mvc         
+	  						http://www.springframework.org/schema/mvc/spring-mvc.xsd         
+	  						http://www.springframework.org/schema/security 
+	  						http://www.springframework.org/schema/security/spring-security.xsd">
+	  						
+   <mvc:annotation-driven />
+   <!-- Enable @Controller annotation support -->
+	<context:annotation-config />
+   <context:component-scan base-package="com.commons.*">
+      <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+   </context:component-scan>
+   
+   <!-- view resolver -->
+   <bean id="tilesViewResolver" class="org.springframework.js.ajax.AjaxUrlBasedViewResolver">
+      <property name="viewClass" value="org.springframework.js.ajax.tiles3.AjaxTilesView" />
+   </bean>
+   <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+      <property name="definitions">
+         <list>
+            <value>/WEB-INF/tiles.xml</value>
+         </list>
+      </property>
+   </bean>
+   <!-- <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass">
 			<value>
 				org.springframework.web.servlet.view.tiles3.TilesView
 			</value>
 		</property>
-	</bean>
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-	<bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/tiles.xml</value>
-			</list>
-		</property>
+	</bean>  -->
+	
+	<!-- File upload url -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="99999999999" /> <!-- 256 megs -->
 	</bean>
 </beans>

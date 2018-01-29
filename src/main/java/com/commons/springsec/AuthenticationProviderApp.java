@@ -1,4 +1,4 @@
-package com.commons.service;
+package com.commons.springsec;
 
 import java.util.HashSet;
 import java.util.Set;

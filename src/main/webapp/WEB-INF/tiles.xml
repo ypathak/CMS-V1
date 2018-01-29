@@ -10,9 +10,18 @@
 		<put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
 
 	</definition>
-	<definition name="sa" extends="base.definition">
+	
+	 <definition name="login" template="login.jsp">
+        <put-attribute name="body" value="login.jsp" />
+    </definition>
+    
+	<definition name="superadmin/adminregister" extends="base.definition">
 		<put-attribute name="title" value="welcome Super Admin"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/jsp/superadmin.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/superadminpages/superadminregistration.jsp"></put-attribute>
+	</definition>
+	<definition name="superadmin/dashboard" extends="base.definition">
+		<put-attribute name="title" value="welcome Super Admin"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/superadminpages/superadmindashboard.jsp"></put-attribute>
 	</definition>
 	<definition name="a" extends="base.definition">
 		<put-attribute name="title" value="welcome Admin"></put-attribute>

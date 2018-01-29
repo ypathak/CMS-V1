@@ -1,24 +1,24 @@
 package com.commons.entity;
 
+import java.util.Date;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User extends AbstractEntity {
 
 	/**
@@ -27,15 +27,13 @@ public class User extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 
-	@NotEmpty(message = "Enter Firstname")
 	@Column(name = "firstname")
 	private String firstname;
 
-	@NotEmpty(message = "Enter Lastname")
 	@Column(name = "lastname")
 	private String lastname;
 
@@ -52,27 +50,59 @@ public class User extends AbstractEntity {
 	@Column(name = "password")
 	private String password;
 
-	
+	@Column(name = "home_countryid")
+	private Integer homecountryid;
 
+	@Column(name = "home_stateid")
+	private Integer homestateid;
+
+	@Column(name = "home_cityid")
+	private Integer homecityid;
+	
+	@Column(name = "home_zipcode")
+	private Integer homezipcode;
+
+	@Column(name = "office_countryid")
+	private Integer officecountryid;
+
+	@Column(name = "office_stateid")
+	private Integer officestateid;
+
+	@Column(name = "office_cityid")
+	private Integer officecityid;
+	
+	@Column(name = "office_zipcode")
+	private Integer officezipcode;
+
+	@Column(name = "birthdate")
+	private Date birthdate;
+	
+	@Column(name = "aniversarydate")
+	private Date aniversarydate;
+	
+	@Column(name = "homeadd")
+	private String homeadd;
+	
+	@Column(name = "offadd")
+	private String offadd;
+	
+	@Column(name = "pancardnum")
+	private String pancardnum;
+	
+	@Column(name = "aadharnum")
+	private String aadharnum;
+	
+	@Column(name = "gstin")
+	private String gstin;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "userroles", joinColumns = { @JoinColumn(name = "Userid") }, inverseJoinColumns = {
-			@JoinColumn(name = "userrole_id") })
+	@JoinTable(name = "userroles", joinColumns = { @JoinColumn(name = "Userid") }, inverseJoinColumns = { @JoinColumn(name = "userrole_id") })
 	private Set<Role> roles;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private Set<Client> client;
 
 	public User() {
-	}
-
-	public User(Long id) {
-		super();
-		this.id = id;
-	}
-
-	public User(String username) {
-		super();
-		this.username = username;
 	}
 
 	public Long getId() {
@@ -123,7 +153,125 @@ public class User extends AbstractEntity {
 		this.password = password;
 	}
 
+	public Integer getHomecountryid() {
+		return homecountryid;
+	}
 
+	public void setHomecountryid(Integer homecountryid) {
+		this.homecountryid = homecountryid;
+	}
+
+	public Integer getHomestateid() {
+		return homestateid;
+	}
+
+	public void setHomestateid(Integer homestateid) {
+		this.homestateid = homestateid;
+	}
+
+	public Integer getHomecityid() {
+		return homecityid;
+	}
+
+	public void setHomecityid(Integer homecityid) {
+		this.homecityid = homecityid;
+	}
+
+	public Integer getHomezipcode() {
+		return homezipcode;
+	}
+
+	public void setHomezipcode(Integer homezipcode) {
+		this.homezipcode = homezipcode;
+	}
+
+	public Integer getOfficecountryid() {
+		return officecountryid;
+	}
+
+	public void setOfficecountryid(Integer officecountryid) {
+		this.officecountryid = officecountryid;
+	}
+
+	public Integer getOfficestateid() {
+		return officestateid;
+	}
+
+	public void setOfficestateid(Integer officestateid) {
+		this.officestateid = officestateid;
+	}
+
+	public Integer getOfficecityid() {
+		return officecityid;
+	}
+
+	public void setOfficecityid(Integer officecityid) {
+		this.officecityid = officecityid;
+	}
+
+	public Integer getOfficezipcode() {
+		return officezipcode;
+	}
+
+	public void setOfficezipcode(Integer officezipcode) {
+		this.officezipcode = officezipcode;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public Date getAniversarydate() {
+		return aniversarydate;
+	}
+
+	public void setAniversarydate(Date aniversarydate) {
+		this.aniversarydate = aniversarydate;
+	}
+
+	public String getHomeadd() {
+		return homeadd;
+	}
+
+	public void setHomeadd(String homeadd) {
+		this.homeadd = homeadd;
+	}
+
+	public String getOffadd() {
+		return offadd;
+	}
+
+	public void setOffadd(String offadd) {
+		this.offadd = offadd;
+	}
+
+	public String getPancardnum() {
+		return pancardnum;
+	}
+
+	public void setPancardnum(String pancardnum) {
+		this.pancardnum = pancardnum;
+	}
+
+	public String getAadharnum() {
+		return aadharnum;
+	}
+
+	public void setAadharnum(String aadharnum) {
+		this.aadharnum = aadharnum;
+	}
+
+	public String getGstin() {
+		return gstin;
+	}
+
+	public void setGstin(String gstin) {
+		this.gstin = gstin;
+	}
 
 	public Set<Role> getRoles() {
 		return roles;

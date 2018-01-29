@@ -13,7 +13,6 @@ import com.commons.entity.Client;
 import com.commons.entity.Role;
 import com.commons.entity.User;
 import com.commons.repository.UserDao;
-import com.commons.repository.UserDaoImpl;
 
 
 @Service
@@ -26,15 +25,13 @@ public class UserServiceImpl implements UserService{
 	BCryptPasswordEncoder bcry;
 	
 	@Override
-	public void findByUserName(String userName) throws Exception {
-		userDao.findByUserName(userName);
+	public User findByUserName(String userName) throws Exception {
+		return userDao.findByUserName(userName);
 	}
 
 	@Override
 	public void save(User user) throws Exception {
 		user.setPassword(bcry.encode(user.getPassword()));
-		Date created_date=new Date();
-		user.setCreatedDate(created_date);
 		userDao.save(user);
 	}
 
@@ -46,20 +43,16 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<Client> clientlist(Long long1) throws Exception {
+	public List<Client> clientlist(Long id) throws Exception {
 		// TODO Auto-generated method stub
-		return userDao.clientlist(long1);
+		return userDao.clientlist(id);
 	}
 
 	@Override
 	public void saveclient(Client client) throws Exception {
 		// TODO Auto-generated method stub
-		
 		Date created_date=new Date();
 		client.setCreatedDate(created_date);
 		userDao.saveclient(client);
-		
 	}
-
-	
 }

@@ -1,0 +1,18 @@
+// Class
+.visible {
+  display: block
+}
+.invisible {
+ display: none
+}
+.fixedElement {
+    background-color: #c0c0c0;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000000;
+}
+.requiredField:after { 
+   content:"*";
+   color:red;
+}

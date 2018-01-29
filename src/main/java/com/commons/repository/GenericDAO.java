@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 
+@SuppressWarnings("deprecation")
 public interface GenericDAO<T, ID extends Serializable> {
 
 	public void save(T entity);
@@ -14,9 +15,9 @@ public interface GenericDAO<T, ID extends Serializable> {
 
 	public void delete(T entity);
 
-	public List<T> findMany(Query query);
+	public List<T> findMany(Query<T> query);
 
-	public T findOne(Query query);
+	public T findOne(Query<?> query);
 
 	public List<T> findAll(Class<T> clazz);
 

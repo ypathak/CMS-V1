@@ -1,4 +1,4 @@
-package com.commons.service;
+package com.commons.springsec;
 
 import java.io.IOException;
 import java.util.Set;
@@ -28,7 +28,7 @@ public class SuccessHandlerApp implements AuthenticationSuccessHandler,Applicati
 		}else if(roles.contains(ADMIN)){
 			response.sendRedirect("a/");
 		}else if(roles.contains(SUPER_ADMIN)){
-			response.sendRedirect("s/");
+			response.sendRedirect("s/d");
 		}
 	}
 }

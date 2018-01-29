@@ -9,6 +9,7 @@ import org.hibernate.Session;
 
 import com.commons.utils.HibernateUtil;
 
+@SuppressWarnings("deprecation")
 public abstract class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 	protected Session getSession() {
 		return HibernateUtil.getSession();
@@ -29,21 +30,19 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
 		hibernateSession.delete(entity);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<T> findMany(Query query) {
+	public List<T> findMany(Query<T> query) {
 		List<T> t;
 		t = (List<T>) query.list();
 		return t;
 	}
 
 	@SuppressWarnings("unchecked")
-	public T findOne(Query query) {
+	public T findOne(Query<?> query) {
 		T t;
 		t = (T) query.uniqueResult();
 		return t;
 	}
 
-	@SuppressWarnings("unchecked")
 	public T findByID(Class<T> clazz, BigDecimal id) {
 		Session hibernateSession = this.getSession();
 		T t = null;
@@ -55,9 +54,8 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
 	public List<T> findAll(Class<T> clazz) {
 		Session hibernateSession = this.getSession();
 		List<T> T = null;
-		Query query = hibernateSession.createQuery("from " + clazz.getName());
+		Query<T> query = hibernateSession.createQuery("from " + clazz.getName());
 		T = query.list();
 		return T;
 	}
-
 }

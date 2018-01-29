@@ -8,13 +8,12 @@
    <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-         <li class="header">MAIN NAVIGATION</li>
             <sec:authorize access="hasRole('SUPER_ADMIN')">
             	 <li>
-            	 		<a href="documentation/index.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            	 		<a href="${pageContext.request.contextPath}/s/d"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
             	 </li>
             	 <li>
-            	 		<a href="${pageContext.request.contextPath}/s/"><i class="fa fa-circle-o"></i> <span>Register Admin</span></a>
+            	 		<a href="${pageContext.request.contextPath}/s/a/r/p"><i class="fa fa-user-o"></i> <span>Register Admin</span></a>
             	 </li>
             </sec:authorize>
             <sec:authorize access="hasRole('ADMIN')">

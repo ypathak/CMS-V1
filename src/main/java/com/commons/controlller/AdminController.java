@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,20 +22,16 @@ import com.commons.entity.Role;
 import com.commons.entity.User;
 import com.commons.service.UserService;
 import com.commons.utils.ApplicationConstants;
-import com.google.gson.Gson;
 
 @Controller
-@RequestMapping(value = "a")
+@RequestMapping("a")
 @PreAuthorize(value = "ADMIN")
 public class AdminController implements ApplicationConstants {
 	@Autowired
 	UserService userService;
 
-
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String dashboard() {
-
 		return "a";
 	}
 
@@ -46,15 +43,11 @@ public class AdminController implements ApplicationConstants {
 		try {
 			List<Role> roles = userService.fetchrole("EMPLOYEE");
 			user.setRoles(new HashSet<>(roles));
-
 			userService.save(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return "a";
-
 	}
 
 	@RequestMapping(value = "/regi", method = RequestMethod.GET)
@@ -65,10 +58,8 @@ public class AdminController implements ApplicationConstants {
 
 	@RequestMapping(value = "/clnt", method = RequestMethod.GET)
 	public String regiclient(Model model,HttpSession session) {
-
 		try{
 			User  user=(User)session.getAttribute("user");
-			
 			List<Client> clients =userService.clientlist(user.getId());
 			model.addAttribute("clientdata", new Client());
 			model.addAttribute("clientlist", clients);
@@ -79,22 +70,12 @@ public class AdminController implements ApplicationConstants {
 		return "clnt";
 	}
 	@RequestMapping(value="/clntregister", method=RequestMethod.POST )
-	public @ResponseBody List<Client> addclient(@ModelAttribute("clientdata")Client client,HttpSession session){
-		List<Client> clients=null;
+	public @ResponseBody String addclient(@ModelAttribute("clientdata")Client client){
 		try{
-			User  user=(User)session.getAttribute("user");
-			client.setUser(user);
 			userService.saveclient(client);
-			clients =userService.clientlist(user.getId());
-		}catch(Exception exception)
-		{
+		}catch(Exception exception){
 			System.out.println(exception);
 		}
-		return clients;
+		return "ok";
 	}
-
-
-
-
-
 }

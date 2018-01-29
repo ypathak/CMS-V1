@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable 
 {
@@ -18,24 +17,27 @@ public abstract class AbstractEntity implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "created_by")
-	protected String createdBy;
+	protected Long createdBy;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
 	protected Date createdDate ;
 	
 	@Column(name = "updated_by")
-	protected String updatedBy;
+	protected Long updatedBy;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_date")
 	protected Date updatedDate;
 	
 	@Column(name = "is_deleted")
-	protected boolean isDeleted = false;	
-	
+	public boolean isDeleted = false;
 
-	public void setCreatedBy(String createdBy) {
+	public Long getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Long createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -47,11 +49,11 @@ public abstract class AbstractEntity implements Serializable
 		this.createdDate = createdDate;
 	}
 
-	public String getUpdatedBy() {
+	public Long getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(String updatedBy) {
+	public void setUpdatedBy(Long updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -70,14 +72,4 @@ public abstract class AbstractEntity implements Serializable
 	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-	
-
 }

@@ -8,14 +8,14 @@ import com.commons.entity.User;
 
 public interface UserService {
 
-	public void findByUserName(String userName) throws Exception;
+	User findByUserName(String userName) throws Exception;
+	
+	void save(User user) throws Exception;
 
-	public void save(User user) throws Exception;
+	List<Role> fetchrole(String role) throws Exception;
 
-	public List<Role> fetchrole(String role) throws Exception;
+	List<Client> clientlist(Long id) throws Exception;
 
-	public List<Client> clientlist(Long long1) throws Exception;
-
-	public void saveclient(Client client) throws Exception;
+	void saveclient(Client client) throws Exception;
 
 }

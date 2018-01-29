@@ -258,11 +258,11 @@ opacity: 1;
 						<!-- /.box-header -->
 						<div class="box-body" id="popupform">
 						
-						<button type="button" onclick="client.closepopup()"
+						<button type="button" onclick="client.closepopup()" 
 						         class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						
 							<form:form modelAttribute="clientdata"
-								onsubmit="return client.Validate()" name="form1" action="${contextPath}">
+								onsubmit="client.fromsubmit()" name="form1" action="${contextPath}">
 								<div class="form-group has-feedback">
 									<form:input class="form-control" placeholder="Client Name"
 										type="text" path="clientname" autocomplete="off" />

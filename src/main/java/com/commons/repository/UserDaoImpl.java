@@ -15,15 +15,12 @@ import com.commons.entity.User;
 @Repository
 public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 	@Autowired
-	SessionFactory sessionfactory;
-
-	Session session;
-	Transaction transaction;
+	SessionFactory sessionFactoryApp;
 
 	@Override
 	public User findByUserName(String userName) throws Exception {
-		session = sessionfactory.getCurrentSession();
-		transaction = session.beginTransaction();
+		Session session = sessionFactoryApp.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
 
 		User user = null;
 		try {
@@ -39,15 +36,15 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Role> findallrole(String role) throws Exception {
-		// TODO Auto-generated method stub
-		List<Role> list;
-		session = sessionfactory.getCurrentSession();
-		transaction = session.beginTransaction();
+		List<Role> list = null;
+		Session session = sessionFactoryApp.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
 		try {
 			String hql = "from Role WHERE role=:role";
-			list = session.createQuery(hql).setParameter("role", role).list();
+			list = (List<Role>) session.createQuery(hql).setParameter("role", role).list();
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -59,9 +56,8 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 
 	@Override
 	public void save(User user) {
-		System.out.println("user dao+++++++++++++++++");
-		session = sessionfactory.getCurrentSession();
-		transaction = session.beginTransaction();
+		Session session = sessionFactoryApp.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
 		try {
 			user.setDeleted(false);
 			session.save(user);
@@ -73,15 +69,15 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Client> clientlist(Long long1) throws Exception {
-		// TODO Auto-generated method stub
-		session = sessionfactory.getCurrentSession();
-		transaction = session.beginTransaction();
-		List<Client> list;
+	public List<Client> clientlist(Long id) throws Exception {
+		Session session = sessionFactoryApp.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		List<Client> list = null;
 		try{
 			String hql="from Client where user_id=:user_id";	
-			list = session.createQuery(hql).setParameter("user_id", long1).list();
+			list = (List<Client>) session.createQuery(hql).setParameter("user_id", id).list();
 
 		}catch(Exception e){
 			throw e;
@@ -96,8 +92,8 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 
 	@Override
 	public void saveclient(Client client) throws Exception {
-		session = sessionfactory.getCurrentSession();
-		transaction = session.beginTransaction();
+		Session session = sessionFactoryApp.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
 		try {
 			client.setDeleted(false);
 			session.save(client);
@@ -107,10 +103,5 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 			transaction.commit();
 			session.close();
 		}
-
 	}
-
-
-
-
 }

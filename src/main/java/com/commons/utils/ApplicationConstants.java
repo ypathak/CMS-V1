@@ -13,4 +13,6 @@ public interface ApplicationConstants {
 	String SUPER_ADMIN ="SUPER_ADMIN";
 	String ADMIN ="ADMIN";
 	
+	String ONLYALPABET = "[a-zA-Z]+";
+	
 }

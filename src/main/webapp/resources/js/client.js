@@ -8,22 +8,28 @@ var client={
 		},	
 
 		fromsubmit : function(){
+			
+			//Prevent default submission of form
+			event.stopPropagation();
+		      
 			debugger;
 			var urlsend = $("#clientdata").attr("action")+"/a/clntregister";
 			
 			$.ajax({
-				type:"POST",
+				/*type:"POST",
 				url:urlsend,
-				datatype :'json',
-				data:$("#clientdata").serialize(),
+				data:$("#clientdata").serialize(),*/
+				url : urlsend,
+                type : "POST",
+                /*data: $("#clientdata").serialize(),*/
 				success: function(data){
 					debugger;
 					alert(data+"success");
 					$("#divdisplay").hide();
 
 
-				},error : function(data){
-					alert(data.responseText+"exception");
+				},error : function(error){
+					alert(error.responseText+"exception");
 					/*document.getElementById('divdisplay').style.display = "block";*/
 				} 
 			});
@@ -31,8 +37,13 @@ var client={
 		},
 
 		Validate: function(){
+			
 			debugger;
-			var cname = document.getElementById("clientname").value;
+			
+			//Prevent default submission of form
+			event.stopPropagation();
+			
+			/*var cname = document.getElementById("clientname").value;
 			var Pannumber = document.getElementById("pannumber").value;
 			var adharnumber = document.getElementById("adharnumber").value;
 			var department = document.getElementById("department").value;
@@ -79,7 +90,6 @@ var client={
 
 				if(isNaN(mobilenumber) || isNaN(phonenumber)){
 					document.getElementById("mobilenumber").innerHTML="Enter Valid Mobile Number";  
-					alert("enter valid mobilenumber")
 
 				}
 				if(mobilenumber.length != 10){
@@ -92,7 +102,7 @@ var client={
 
 				}
 				return false;
-			}
+			}*/
 			client.fromsubmit();
 		},
 
@@ -102,13 +112,8 @@ var client={
 
 		},
 
-		showtable(obj){
+		showtable: function(obj){
 
 		},
 
 };
-
-$(document).ready(function()  {
-	
-	$("#divdisplay").hide();
-});
