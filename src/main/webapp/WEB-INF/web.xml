@@ -13,7 +13,11 @@
    <servlet>
       <servlet-name>dispatcher</servlet-name>
       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-      <load-on-startup>1</load-on-startup>
+      <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
    </servlet>
    <servlet-mapping>
       <servlet-name>dispatcher</servlet-name>
@@ -49,7 +53,5 @@
       <url-pattern>*.woff2</url-pattern>
       <url-pattern>*.ttf</url-pattern>
    </servlet-mapping>
-   <listener>
-      <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-   </listener>
+   
 </web-app>

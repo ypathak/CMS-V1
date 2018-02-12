@@ -21,11 +21,11 @@
 	</http>
 	<authentication-manager>
 		<authentication-provider user-service-ref="UserDetailsService">
-			<password-encoder ref="encoder"></password-encoder>
+			<!-- <password-encoder ref="encoder"></password-encoder> -->
 		</authentication-provider>
 	</authentication-manager>
 	
-	<beans:bean id="UserDetailsService" class="com.commons.springsec.AuthenticationProviderApp"></beans:bean>
+	<beans:bean id="UserDetailsService" class="com.commons.springsec.AppUserDetailsService"></beans:bean>
 
 	<beans:bean id="successhandler" class="com.commons.springsec.SuccessHandlerApp"></beans:bean>
 
