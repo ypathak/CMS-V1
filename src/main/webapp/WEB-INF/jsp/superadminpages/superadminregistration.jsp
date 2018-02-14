@@ -18,7 +18,8 @@
          </div>
          <!-- /.box-header -->
          <div class="box-body">
-            <form:form modelAttribute="admindata" action="${contextPath}/s/adminregister" name="dev_adminRegistrationForm">
+            <%-- <form:form modelAttribute="admindata" action="${contextPath}/s/a/r" name="dev_adminRegistrationForm"> --%>
+            <form:form modelAttribute="admindata" name="dev_adminRegistrationForm">
                <div class="row">
                   <div class="col-md-6">
                      <div class="form-group has-feedback">
@@ -93,7 +94,7 @@
                            </div>
                         </div>
                         <span>
-                           <form:errors path="birthdate" cssClass="error" />
+                           <%-- <form:errors path="birthdate" cssClass="error" /> --%>
                         </span>
                      </div>
                   </div>
@@ -107,7 +108,7 @@
                            </div>
                         </div>
                         <span>
-                           <form:errors path="aniversarydate" cssClass="error" />
+                           <%-- <form:errors path="aniversarydate" cssClass="error" /> --%>
                         </span>
                      </div>
                   </div>
@@ -225,7 +226,9 @@
                   </div>
                </div>
                <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                  <button type="submit" class="btn btn-primary"
+                        onclick="superadmin.save();">Submit</button>
                </div>
             </form:form>
          </div>

@@ -37,16 +37,12 @@ public class User extends AbstractEntity {
 	@Column(name = "lastname")
 	private String lastname;
 
-	@NotEmpty(message = "Enter username")
 	@Column(name = "username", unique = true)
 	private String username;
 
-	@NotEmpty(message = "Enter Email")
-	@Email
 	@Column(name = "email", unique = true)
 	private String email;
 
-	@NotEmpty(message = "Enter Password")
 	@Column(name = "password")
 	private String password;
 

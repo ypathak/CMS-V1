@@ -80,5 +80,20 @@ var superadmin = {
                 });
             }
         });
+    },save:function(){
+        debugger;
+        
+        $.ajax({
+            url:context+'/s/a/r',
+            type:'POST',
+            data: $("#admindata").serialize(),
+            success: function(data){
+                debugger;
+                document.getElementById("admindata").form = "admindata";
+                /*  $('#admindata').replaceWith($(data).find('#admindata'));*/
+            },error : function(error){
+                alert("exception");
+            }
+        });
     }
 }

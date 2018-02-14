@@ -1,5 +1,6 @@
 package com.commons.formvalidator;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -7,6 +8,7 @@ import org.springframework.validation.Validator;
 import com.commons.entity.User;
 import com.commons.utils.ApplicationConstants;
 
+@Component
 public class UserValidatorForm implements Validator{
 
 	@Override
@@ -18,7 +20,7 @@ public class UserValidatorForm implements Validator{
 	public void validate(Object obj, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstname", "firstname.required");		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastname", "lastname.required");	
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "username.required");	
+		/*ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "username.required");	
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required");	
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");	
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthdate", "birthdate.required");	
@@ -32,7 +34,7 @@ public class UserValidatorForm implements Validator{
 		User usr = (User) obj;
 		if(usr.getFirstname().matches(ApplicationConstants.ONLYALPABET)){
 			errors.rejectValue("firstname", "onlyalphabet");
-		}
+		}*/
 	}
 
 }
