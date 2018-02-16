@@ -61,6 +61,7 @@ public class UserValidatorForm implements Validator{
 				if(usr.getFirstname().length() < 3 || usr.getFirstname().length() > 50){
 					errors.rejectValue("firstname", "Firstname.size");
 				}
+				
 			}
 			if(!errors.hasFieldErrors("lastname")){
 				if(!usr.getLastname().matches(ApplicationConstants.ONLYALPABET)){
