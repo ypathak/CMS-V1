@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -46,6 +48,9 @@ public class User extends AbstractEntity {
 	@Column(name = "password")
 	private String password;
 
+	@Transient
+	private String passwordConfirm;
+	
 	@Column(name = "home_countryid")
 	private Integer homecountryid;
 
@@ -56,7 +61,7 @@ public class User extends AbstractEntity {
 	private Integer homecityid;
 	
 	@Column(name = "home_zipcode")
-	private Integer homezipcode;
+	private String homezipcode;
 
 	@Column(name = "office_countryid")
 	private Integer officecountryid;
@@ -68,7 +73,7 @@ public class User extends AbstractEntity {
 	private Integer officecityid;
 	
 	@Column(name = "office_zipcode")
-	private Integer officezipcode;
+	private String officezipcode;
 
 	@Column(name = "birthdate")
 	private Date birthdate;
@@ -173,13 +178,7 @@ public class User extends AbstractEntity {
 		this.homecityid = homecityid;
 	}
 
-	public Integer getHomezipcode() {
-		return homezipcode;
-	}
 
-	public void setHomezipcode(Integer homezipcode) {
-		this.homezipcode = homezipcode;
-	}
 
 	public Integer getOfficecountryid() {
 		return officecountryid;
@@ -205,13 +204,7 @@ public class User extends AbstractEntity {
 		this.officecityid = officecityid;
 	}
 
-	public Integer getOfficezipcode() {
-		return officezipcode;
-	}
-
-	public void setOfficezipcode(Integer officezipcode) {
-		this.officezipcode = officezipcode;
-	}
+	
 
 	public Date getBirthdate() {
 		return birthdate;
@@ -285,4 +278,28 @@ public class User extends AbstractEntity {
 		this.client = client;
 	}
 
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
+	public String getHomezipcode() {
+		return homezipcode;
+	}
+
+	public void setHomezipcode(String homezipcode) {
+		this.homezipcode = homezipcode;
+	}
+
+	public String getOfficezipcode() {
+		return officezipcode;
+	}
+
+	public void setOfficezipcode(String officezipcode) {
+		this.officezipcode = officezipcode;
+	}
+  
 }

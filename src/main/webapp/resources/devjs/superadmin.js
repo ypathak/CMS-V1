@@ -88,10 +88,11 @@ var superadmin = {
             type:'POST',
             data: $("#admindata").serialize(),
             success: function(data){
-                debugger;
-                document.getElementById("admindata").form = "admindata";
+                
+             /*   document.getElementById("admindata").form = "admindata";*/
                 /*  $('#admindata').replaceWith($(data).find('#admindata'));*/
             },error : function(error){
+            	debugger;
                 alert("exception");
             }
         });
