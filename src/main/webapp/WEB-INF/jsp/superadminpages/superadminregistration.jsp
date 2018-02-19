@@ -27,7 +27,7 @@
          <!-- /.box-header -->
          <div class="box-body">
             <%-- <form:form modelAttribute="admindata" action="${contextPath}/s/a/r" name="dev_adminRegistrationForm"> --%>
-            <form:form modelAttribute="admindata" name="dev_adminRegistrationForm">
+            <form:form modelAttribute="admindata" name="dev_adminRegistrationForm" action="javascript:void(0);">
                <div class="row">
                   <div class="col-md-6">
                   <spring:bind path="firstname">
@@ -294,7 +294,7 @@
                <div class="box-footer">
                   <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                   <button type="submit" class="btn btn-primary"
-                        onclick="superadmin.save();">Submit</button>
+                        onclick="return superadmin.save();">Submit</button>
                </div>
             </form:form>
          </div>

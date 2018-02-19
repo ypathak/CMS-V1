@@ -1,22 +1,9 @@
 var superadmin = {
     init: function() {
-        $('form[name=dev_adminRegistrationForm]').submit(function(event) {
-            event.preventDefault();
-            $.ajax({
-                url: context + '/s/a/r',
-                type: 'POST',
-                cache: false,
-                data: $('form[name=dev_adminRegistrationForm]').serialize(),
-                success: function(res) {
-                    //$('form[name=dev_adminRegistrationForm]')[0].reset();
-                	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(res).find('form[name=dev_adminRegistrationForm]')[0]);
-                },error: function(err){
-                	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(err).find('form[name=dev_adminRegistrationForm]')[0]);
-                }
-            });
-        });
+       
     },homeCountryDrpChange: function(e){
     	var homecountryid = $('#homecountryid option:selected').val();
+    	event.preventDefault();
     	$.ajax({
             url: context + '/s/a/r/p',
             type: 'GET',
@@ -33,6 +20,7 @@ var superadmin = {
     },homeStateDrpChange: function(e){
     	var homecountryid = $('#homecountryid option:selected').val();
     	var homestateid = $('#homestateid option:selected').val();
+    	event.preventDefault();
     	$.ajax({
             url: context + '/s/a/r/p',
             type: 'GET',
@@ -50,6 +38,7 @@ var superadmin = {
         });
     },offCountryDrpChange: function(e){
     	var officecountryid = $('#officecountryid option:selected').val();
+    	event.preventDefault();
     	$.ajax({
             url: context + '/s/a/r/p',
             type: 'GET',
@@ -66,6 +55,7 @@ var superadmin = {
     },offStateDrpChange: function(e){
     	var officecountryid = $('#officecountryid option:selected').val();
     	var officestateid = $('#officestateid option:selected').val();
+    	event.preventDefault();
     	$.ajax({
             url: context + '/s/a/r/p',
             type: 'GET',
@@ -81,20 +71,20 @@ var superadmin = {
             }
         });
     },save:function(){
-        debugger;
-        
-        $.ajax({
-            url:context+'/s/a/r',
-            type:'POST',
-            data: $("#admindata").serialize(),
-            success: function(data){
-                
-             /*   document.getElementById("admindata").form = "admindata";*/
-                /*  $('#admindata').replaceWith($(data).find('#admindata'));*/
-            },error : function(error){
-            	debugger;
-                alert("exception");
-            }
-        });
+    	 $('form[name=dev_adminRegistrationForm]').submit(function(event) {
+             event.preventDefault();
+             $.ajax({
+                 url: context + '/s/a/r',
+                 type: 'POST',
+                 cache: false,
+                 data: $('form[name=dev_adminRegistrationForm]').serialize(),
+                 success: function(res) {
+                     //$('form[name=dev_adminRegistrationForm]')[0].reset();
+                 	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(res).find('form[name=dev_adminRegistrationForm]')[0]);
+                 },error: function(err){
+                 	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(err).find('form[name=dev_adminRegistrationForm]')[0]);
+                 }
+             });
+         });
     }
 }
