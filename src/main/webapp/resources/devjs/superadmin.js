@@ -80,7 +80,11 @@ var superadmin = {
                  data: $('form[name=dev_adminRegistrationForm]').serialize(),
                  success: function(res) {
                      //$('form[name=dev_adminRegistrationForm]')[0].reset();
+                	 
                  	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(res).find('form[name=dev_adminRegistrationForm]')[0]);
+                 	$('#aniversarydate, #birthdate').datepicker({
+                 		  autoclose: true
+                 	});
                  },error: function(err){
                  	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(err).find('form[name=dev_adminRegistrationForm]')[0]);
                  }

@@ -27,6 +27,6 @@ public interface ApplicationConstants {
 	
 	String Adhar_number_patter="^[2-9]{1}[0-9]{11}$";
 	
-	String Gstin_number_pattern="/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/";
+	String Gstin_number_pattern="^([0][1-9]|[1-2][0-9]|[3][0-5])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$";
 	
 }

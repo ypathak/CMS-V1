@@ -1,10 +1,12 @@
 package com.commons.controlller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -45,6 +47,7 @@ public class SuperAdminController implements ApplicationConstants{
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
+		   binder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));
 		binder.addValidators(userValidatorForm);
 	}
 

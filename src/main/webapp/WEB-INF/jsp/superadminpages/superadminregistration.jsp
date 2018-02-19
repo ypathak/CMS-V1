@@ -118,7 +118,7 @@
                            </div>
                         </div>
                         <span>
-                           <%-- <form:errors path="birthdate" cssClass="error" /> --%>
+                           <form:errors path="birthdate" cssClass="error" />
                         </span>
                      </div>
                      </spring:bind>
@@ -134,7 +134,7 @@
                            </div>
                         </div>
                         <span>
-                           <%-- <form:errors path="aniversarydate" cssClass="error" /> --%>
+                           <form:errors path="aniversarydate" cssClass="error" />
                         </span>
                      </div>
                      </spring:bind>
@@ -303,7 +303,9 @@
    </section>
 <script src="${contextPath}/resources/devjs/superadmin.js"></script>
 <script type="text/javascript">
+debugger;
    $(function () {
+	  
    	$('#aniversarydate, #birthdate').datepicker({
    		  autoclose: true
    	});

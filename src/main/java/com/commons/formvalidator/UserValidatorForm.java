@@ -48,6 +48,8 @@ public class UserValidatorForm implements Validator{
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "aadharnum", "aadharnum.required");	
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "homezipcode", "zipcode.required");	
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "officezipcode", "zipcode.required");	
+	
+			
 
 
 			/*ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gstin", "gstin.required");*/
@@ -56,7 +58,7 @@ public class UserValidatorForm implements Validator{
 
 			if(!errors.hasFieldErrors("firstname")){
 				if(!usr.getFirstname().matches(ApplicationConstants.ONLYALPABET)){
-					errors.rejectValue("firstname", "onlyalphabet");
+					errors.rejectValue("firstname", "Firstname.onlyalphabet");
 				}
 				if(usr.getFirstname().length() < 3 || usr.getFirstname().length() > 50){
 					errors.rejectValue("firstname", "Firstname.size");
@@ -65,7 +67,7 @@ public class UserValidatorForm implements Validator{
 			}
 			if(!errors.hasFieldErrors("lastname")){
 				if(!usr.getLastname().matches(ApplicationConstants.ONLYALPABET)){
-					errors.rejectValue("lastname", "onlyalphabet");
+					errors.rejectValue("lastname", "Lastname.onlyalphabet");
 				}
 				else if(usr.getLastname().length() < 3 || usr.getLastname().length() > 50){
 					errors.rejectValue("lastname", "lastname.size");
