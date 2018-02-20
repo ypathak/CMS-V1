@@ -41,7 +41,7 @@ public class UserValidatorForm implements Validator{
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");	
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "repassword.required");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthdate", "birthdate.required");	
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "aniversarydate", "aniversarydate.required");	
+		/*	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "aniversarydate", "aniversarydate.required");	*/
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "homeadd", "homeadd.required");	
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "offadd", "offadd.required");	
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pancardnum", "pancardnum.required");	

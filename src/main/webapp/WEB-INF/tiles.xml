@@ -25,15 +25,15 @@
 	</definition>
 	<definition name="a" extends="base.definition">
 		<put-attribute name="title" value="welcome Admin"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/jsp/admin.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/adminpages/admin.jsp"></put-attribute>
 	</definition>
 	<definition name="e" extends="base.definition">
 		<put-attribute name="title" value="welcome EMPLOYEE"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/jsp/employee.jsp"></put-attribute>
 	</definition>
-	<definition name="userregi" extends="base.definition">
+	<definition name="admin/userregister" extends="base.definition">
 		<put-attribute name="title" value="Regiter Employee"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/jsp/userregister.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/adminpages/userregister.jsp"></put-attribute>
 	</definition>
    <definition name="clntregister" extends="base.definition">
    <put-attribute name="title" value="Insert Client"></put-attribute>

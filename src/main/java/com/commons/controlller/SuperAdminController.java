@@ -108,6 +108,6 @@ public class SuperAdminController implements ApplicationConstants{
 		List<Role> roles=userService.fetchrole("ADMIN");
 		user.setRoles(new HashSet<>(roles));
 		userService.save(user);
-		return "superadmin/adminregister";
+		return "redirect:/s/a/r/p";
 	}
 }

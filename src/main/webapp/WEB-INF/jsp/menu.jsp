@@ -21,7 +21,7 @@
             	 		<a href="documentation/index.html"><i class="fa fa-book"></i> <span>Dashboard</span></a>
             	 </li>
             	 <li class="active">
-            	 		<a href="${pageContext.request.contextPath}/a/regi"><i class="fa fa-circle-o"></i> <span>Register User</span></a>
+            	 		<a href="${pageContext.request.contextPath}/a/r/e"><i class="fa fa-circle-o"></i> <span>Register User</span></a>
             	 </li>
             	 <li>
             	 		<a href="${pageContext.request.contextPath}/a/clnt"><i class="fa fa-circle-o"></i> <span>Add Client</span></a>
