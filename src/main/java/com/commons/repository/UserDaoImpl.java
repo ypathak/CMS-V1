@@ -104,4 +104,49 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 			session.close();
 		}
 	}
+
+	@Override
+	public List<User> adminlist(Long id,int pagecount) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactoryApp.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		List<User> list = null;
+		try{
+			String hql="from User where created_by=:created_by";	
+			list = (List<User>) session.createQuery(hql).setParameter("created_by", id)
+					.setFirstResult((pagecount-1)*10).setMaxResults(pagecount*10).list();
+
+		}catch(Exception e){
+			throw e;
+
+		}
+		finally {
+			transaction.commit();
+			session.close();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int totallist(Long id) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactoryApp.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		List<User> list = null;
+		try{
+			String hql="from User where created_by=:created_by";	
+			list = (List<User>) session.createQuery(hql).setParameter("created_by", id).list();
+
+		}catch(Exception e){
+			throw e;
+
+		}
+		finally {
+			transaction.commit();
+			session.close();
+		}
+		
+		return list.size();
+	}
 }

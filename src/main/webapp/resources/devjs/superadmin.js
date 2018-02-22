@@ -1,5 +1,7 @@
 var superadmin = {
     init: function() {
+    	superadmin.getadmindata(1);
+       $("#adminRegDiv").hide();
        
     },homeCountryDrpChange: function(e){
     	var homecountryid = $('#homecountryid option:selected').val();
@@ -90,5 +92,54 @@ var superadmin = {
                  }
              });
          });
-    }
+    },addnewadmin : function(){
+    	event.preventDefault();
+    	$("#adminlist").hide();
+    	$("#adminRegDiv").show();
+    	debugger;
+    	var homecountryid = $('#homecountryid option:selected').val();
+    	$.ajax({
+            url: context + '/s/a/r/p',
+            type: 'GET',
+            data: {
+            	homecountryid: homecountryid
+            },
+            success: function(res) {
+            	debugger;
+            	$("#adminRegDiv").replaceWith($(res).find('#adminRegDiv'));
+             	$('#aniversarydate, #birthdate').datepicker({
+             		  autoclose: true
+             	});
+                $(".select2").select2();
+            }
+        });
+    
+    },backadminlist : function(){
+    	$("#adminRegDiv").hide();
+    	$("#adminlist").show();
+    },	getadmindata : function (i) {
+		 debugger;
+			$.ajax({
+				type: "GET",
+				url:context + '/s/a/l',
+				data :{ 
+					'pageCount': i
+					},
+				success: function(res) {
+					var header = document.getElementById("example2_paginate");
+					var btns = header.getElementsByClassName("paginate_button");
+					for (var i = 0; i < btns.length; i++) {
+					  btns[i].addEventListener("click", function() {
+					    var current = document.getElementsByClassName("active");
+					    current[0].className = current[0].className.replace(" active", "");
+					    this.className += " active";
+					  });
+					}
+					$("#example2").replaceWith($(res).find('#example2'));
+				},error : function(){
+					console.log("Excedption");
+				}
+			});
+		
+	 },
 }

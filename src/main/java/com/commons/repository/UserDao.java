@@ -12,4 +12,6 @@ public interface UserDao{
 	void save(User user) throws Exception;
 	List<Client> clientlist(Long long1) throws Exception;
 	void saveclient(Client client) throws Exception;
+	List<User> adminlist(Long id, int pagenumber);
+	int totallist(Long id);
 }

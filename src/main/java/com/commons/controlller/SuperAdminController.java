@@ -77,6 +77,10 @@ public class SuperAdminController implements ApplicationConstants{
 		model.addAttribute("offstates", offstatesList);
 		model.addAttribute("offcities", masterDbService.fetchCitiesByCountryAndState(null == offcountryid ? offcountriesList.get(0).getId() : offcountryid, null == offstateid ? offstatesList.get(0).getId() : offstateid));
 
+		/*UserDetails currentLoginUser = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<User> list=userService.adminlist(appUserDetailsService.loadUserByUsername(currentLoginUser.getUsername()).getUser().getId());
+		model.addAttribute("adminlistdata", list);*/
+		
 		return "superadmin/adminregister";
 	}
 
@@ -109,5 +113,25 @@ public class SuperAdminController implements ApplicationConstants{
 		user.setRoles(new HashSet<>(roles));
 		userService.save(user);
 		return "redirect:/s/a/r/p";
+	}
+	
+	@RequestMapping(value="/a/l",method=RequestMethod.GET)
+	public String adminlist(Model model,@RequestParam(required = false, name="pageCount") Integer pageCount){
+		int page=0;
+   if(null==pageCount){
+		pageCount=1;
+	}
+	
+		model.addAttribute("admindata", new User());
+		UserDetails currentLoginUser = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int total=userService.totallist(appUserDetailsService.loadUserByUsername(currentLoginUser.getUsername()).getUser().getId());
+		List<User> list=userService.adminlist(appUserDetailsService.loadUserByUsername(currentLoginUser.getUsername()).getUser().getId(),pageCount);
+		    page=total/10;
+		    if(total%10!=0){
+		    	page++;
+		    }
+		model.addAttribute("adminlistdata", list);
+		model.addAttribute("page", page);
+		return "superadmin/adminregister";
 	}
 }

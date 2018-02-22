@@ -13,7 +13,7 @@
             	 		<a href="${pageContext.request.contextPath}/s/d"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
             	 </li>
             	 <li>
-            	 		<a href="${pageContext.request.contextPath}/s/a/r/p"><i class="fa fa-user-o"></i> <span>Register Admin</span></a>
+            	 		<a href="${pageContext.request.contextPath}/s/a/l"><i class="fa fa-user-o"></i> <span>Register Admin</span></a>
             	 </li>
             </sec:authorize>
             <sec:authorize access="hasRole('ADMIN')">

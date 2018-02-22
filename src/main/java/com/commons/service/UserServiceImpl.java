@@ -55,4 +55,17 @@ public class UserServiceImpl implements UserService{
 		client.setCreatedDate(created_date);
 		userDao.saveclient(client);
 	}
+
+	@Override
+	public List<User> adminlist(Long id,int pagenumber) {
+		// TODO Auto-generated method stub
+		return userDao.adminlist(id,pagenumber);
+	}
+
+	@Override
+	public int totallist(Long id) {
+		// TODO Auto-generated method stub
+		return userDao.totallist(id);
+		
+	}
 }
