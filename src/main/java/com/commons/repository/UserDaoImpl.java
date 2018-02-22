@@ -106,7 +106,7 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 	}
 
 	@Override
-	public List<User> adminlist(Long id,int pagecount) {
+	public List<User> adminlist(Long id,int pagecount,int totalrecordparpage) {
 		// TODO Auto-generated method stub
 		Session session=sessionFactoryApp.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
@@ -114,7 +114,7 @@ public class UserDaoImpl extends GenericDAOImpl<User, Long> implements UserDao {
 		try{
 			String hql="from User where created_by=:created_by";	
 			list = (List<User>) session.createQuery(hql).setParameter("created_by", id)
-					.setFirstResult((pagecount-1)*10).setMaxResults(pagecount*10).list();
+					.setFirstResult((pagecount-1)*totalrecordparpage).setMaxResults(pagecount*totalrecordparpage).list();
 
 		}catch(Exception e){
 			throw e;

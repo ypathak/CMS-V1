@@ -18,7 +18,7 @@ public interface UserService {
 
 	void saveclient(Client client) throws Exception;
 
-	List<User> adminlist(Long id, int pagenumber);
+	List<User> adminlist(Long id, int pagenumber, int i);
 
 	int totallist(Long id);
 

@@ -1,6 +1,5 @@
 var superadmin = {
     init: function() {
-    	superadmin.getadmindata(1);
        $("#adminRegDiv").hide();
        
     },homeCountryDrpChange: function(e){
@@ -81,18 +80,23 @@ var superadmin = {
                  cache: false,
                  data: $('form[name=dev_adminRegistrationForm]').serialize(),
                  success: function(res) {
-                     //$('form[name=dev_adminRegistrationForm]')[0].reset();
-                	 
                  	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(res).find('form[name=dev_adminRegistrationForm]')[0]);
                  	$('#aniversarydate, #birthdate').datepicker({
                  		  autoclose: true
                  	});
+                	var header = document.getElementById("admindata");
+                	var error = header.getElementsByClassName("error");
+                	if(error.length>1){
+                		mainApp.showNotification("Info","Plese Enter valid Information");
+                	}else{
+                		mainApp.showNotification("success","Insert Admin Successfully");
+                	}
                  },error: function(err){
                  	$('form[name=dev_adminRegistrationForm]')[0].replaceWith($(err).find('form[name=dev_adminRegistrationForm]')[0]);
                  }
              });
          });
-    },addnewadmin : function(){
+    },addnewadminbtn : function(){
     	event.preventDefault();
     	$("#adminlist").hide();
     	$("#adminRegDiv").show();
@@ -114,27 +118,32 @@ var superadmin = {
             }
         });
     
-    },backadminlist : function(){
+    },
+    backadminlistbtn : function(){
     	$("#adminRegDiv").hide();
     	$("#adminlist").show();
-    },	getadmindata : function (i) {
-		 debugger;
+    	superadmin.getadmindata(1);
+    },
+    getadmindata : function (i) {
+    	event.preventDefault();
+    	$("#adminRegDiv").hide();
+    	$("#adminlist").show();
+    	var totalperpage=$("#showdatalength").val();
 			$.ajax({
 				type: "GET",
 				url:context + '/s/a/l',
 				data :{ 
-					'pageCount': i
+					'pageindex': i,
+					'totalrecperpage':totalperpage
 					},
 				success: function(res) {
+					$("#example2_paginate").replaceWith($(res).find('#example2_paginate'));
 					var header = document.getElementById("example2_paginate");
-					var btns = header.getElementsByClassName("paginate_button");
-					for (var i = 0; i < btns.length; i++) {
-					  btns[i].addEventListener("click", function() {
-					    var current = document.getElementsByClassName("active");
-					    current[0].className = current[0].className.replace(" active", "");
-					    this.className += " active";
-					  });
-					}
+                	var error = header.getElementsByClassName("active");
+                	error[0].className = error[0].className.replace(" active", "");
+                	var header1 = document.getElementById("page"+i);
+                	header1.className += " active";
+                	$("#example2_info").replaceWith($(res).find('#example2_info'));
 					$("#example2").replaceWith($(res).find('#example2'));
 				},error : function(){
 					console.log("Excedption");

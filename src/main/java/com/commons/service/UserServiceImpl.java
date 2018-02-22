@@ -57,9 +57,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> adminlist(Long id,int pagenumber) {
+	public List<User> adminlist(Long id,int pagenumber,int totalrecperpage) {
 		// TODO Auto-generated method stub
-		return userDao.adminlist(id,pagenumber);
+		return userDao.adminlist(id,pagenumber,totalrecperpage);
 	}
 
 	@Override

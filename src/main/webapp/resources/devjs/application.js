@@ -24,10 +24,10 @@
  });
  var mainApp = {
      showNotification: function(str, msg) {
-         $('div.devnotification').addClass('alert-success');
-         $('div.devnotification').addClass('alert-info');
-         $('div.devnotification').addClass('alert-warning');
-         $('div.devnotification').addClass('alert-danger');
+         $('div.devnotification').removeClass('alert-success');
+         $('div.devnotification').removeClass('alert-info');
+         $('div.devnotification').removeClass('alert-warning');
+         $('div.devnotification').removeClass('alert-danger');
          $('div.devnotification').text("");
          if (str === "Info") {
              $('div.devnotification').text(msg);

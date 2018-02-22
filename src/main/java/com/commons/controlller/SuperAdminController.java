@@ -25,6 +25,7 @@ import com.commons.entity.User;
 import com.commons.formvalidator.UserValidatorForm;
 import com.commons.master.entity.Countries;
 import com.commons.master.entity.States;
+import com.commons.pagination.entity.pagination;
 import com.commons.service.MasterDbService;
 import com.commons.service.UserService;
 import com.commons.springsec.AppUserDetailsService;
@@ -45,7 +46,7 @@ public class SuperAdminController implements ApplicationConstants{
 	@Autowired
 	private UserValidatorForm userValidatorForm;
 
-	@InitBinder
+	@InitBinder("admindata")
 	protected void initBinder(WebDataBinder binder) {
 		   binder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));
 		binder.addValidators(userValidatorForm);
@@ -115,7 +116,7 @@ public class SuperAdminController implements ApplicationConstants{
 		return "redirect:/s/a/r/p";
 	}
 	
-	@RequestMapping(value="/a/l",method=RequestMethod.GET)
+/*	@RequestMapping(value="/a/l",method=RequestMethod.GET)
 	public String adminlist(Model model,@RequestParam(required = false, name="pageCount") Integer pageCount){
 		int page=0;
    if(null==pageCount){
@@ -132,6 +133,28 @@ public class SuperAdminController implements ApplicationConstants{
 		    }
 		model.addAttribute("adminlistdata", list);
 		model.addAttribute("page", page);
+		return "superadmin/adminregister";
+	}*/
+	@RequestMapping(value="/a/l",method=RequestMethod.GET)
+	public String adminlist(Model model,@RequestParam(required = false, name="pageindex") Integer pageindex,@RequestParam(required = false, name="totalrecperpage") Integer totalrecperpage){
+		pagination pagination=new pagination();
+		model.addAttribute("admindata", new User());
+   if(null==pageindex){
+		pagination.setCurrentpageindex(1);
+	}else{
+		pagination.setCurrentpageindex(pageindex);
+	}
+   if(null==totalrecperpage){
+		pagination.setTotalrecperpage(10);
+	}else{
+		pagination.setTotalrecperpage(totalrecperpage);
+	}
+  
+		UserDetails currentLoginUser = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		pagination.setTotalrec(userService.totallist(appUserDetailsService.loadUserByUsername(currentLoginUser.getUsername()).getUser().getId()));
+		pagination.setData(userService.adminlist(appUserDetailsService.loadUserByUsername(currentLoginUser.getUsername()).getUser().getId(),pagination.getCurrentpageindex(),pagination.getTotalrecperpage()));
+		pagination.setTotalpage(0);
+		model.addAttribute("adminlistdata", pagination);
 		return "superadmin/adminregister";
 	}
 }
